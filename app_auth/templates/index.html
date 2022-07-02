@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Home</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock %}
+
+{% block body %}
+<h1 style="text-align: center">Project 1: Vulnerabilities - Equipa 27</h1>
+{% if user %}
+<div>
+  <p> {{ user }}</p>
+  <div class="imgcontainer">\
+     <img src="{{ url_for('static', filename='images/qq') }}">
+  </div>
+</div>
+{% else %}
+  <!-- Button to open the modal login form -->
+<div style="text-align: center">
+  <!-- <form enctype="multipart/form-data" action="/login" method="POST">
+    <input type="submit" value="login" style="width:100px;height:auto;color:black" />
+  </form> -->
+  <button onclick="onclick=document.getElementById('id01').style.display='block'" >Login</button>
+  <button onclick="onclick=document.getElementById('id02').style.display='block'" >Register</button>
+</div>
+
+ <!-- The Modal -->
+ <div id="id01" class="modal">
+   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+   <!-- Modal Content -->
+   <form class="modal-content animate" action="/login" method="POST">
+     <div class="container">
+        Username: <input name="username" type="text" placeholder="Enter Username" id="username" required />
+       <input type="submit" value="Login" style="width:100px;height:auto;color:black" />
+     </div>
+   </form>
+ </div>
+ <!-- The Modal -->
+ <div id="id02" class="modal">
+   <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+   <!-- Modal Content -->
+   <form enctype="multipart/form-data" class="modal-content animate" action="/register" method="POST">
+      <div class="container">
+        Nome: <input name="username" type="text" placeholder="Enter Username" id="username"  required/>
+        Password: <input name="password" type="password" placeholder="Enter Password" id="password"  required/>
+        Repeat Password: <input name="repeat_password" type="password" placeholder="Repeat Password" id="repeat_password" required />
+       <input type="submit" value="register" style="width:100px;height:auto;color:black" />
+     </div>
+   </form>
+ </div>
+ <script>
+    // Get the modal
+    var modal = document.getElementById('id01');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    // Get the modal
+    var modal = document.getElementById('id02');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    // Get all elements with class="closebtn"
+    var close = document.getElementsByClassName("closebtn");
+    var i;
+
+    // Loop through all close buttons
+    for (i = 0; i < close.length; i++) {
+      // When someone clicks on a close button
+      close[i].onclick = function(){
+
+        // Get the parent of <span class="closebtn"> (<div class="alert">)
+        var div = this.parentElement;
+
+        // Set the opacity of div to 0 (transparent)
+        div.style.opacity = "0";
+
+        // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+        setTimeout(function(){ div.style.display = "none"; }, 600);
+      }
+    }
+    </script>
+{% endif %}
+
+{% if erro_file %}
+<div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  Erro extensao insegura register falhou
+</div>
+{% endif %}
+
+{% if erro %}
+<div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  Erro ao se Registar
+</div>
+{% endif %}
+
+{% endblock %}

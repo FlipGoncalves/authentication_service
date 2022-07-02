@@ -1,0 +1,25 @@
+ {% block head %}
+    <title>Register</title>
+{% endblock head %} 
+
+{% block body %}
+<div>
+{% if erro %}
+<form action="/register" method="POST">
+    Nome: <input name="username" type="text" id="username"  />
+    Password: <input name="password" type="text" id="password"  />
+    Repeat Password: <input name="repeat_password" type="text" id="password"  />
+    <input type="submit" value="Register" style="width:100px;height:auto;color:black" />
+</form>
+<p>{{ msg }}</p>
+{% else %}
+<form action="/register" method="POST">
+    Nome: <input name="username" type="text" id="username"  />
+    Password: <input name="password" type="text" id="password"  />
+    Repeat Password: <input name="repeat_password" type="text" id="password"  />
+    <input type="submit" value="Register" style="width:100px;height:auto;color:black" />
+</form>
+{% endif %}
+</div>
+
+{% endblock body %}

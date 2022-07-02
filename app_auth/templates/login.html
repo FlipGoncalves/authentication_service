@@ -1,0 +1,39 @@
+{% block head %}
+<title>Log in</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock head %} 
+
+{% block body %}
+ <!-- Button to open the modal login form -->
+ <button onclick="document.getElementById('id01').style.display='block'">Login</button>
+
+ <!-- The Modal -->
+ <div id="id01" class="modal">
+   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+ 
+   <!-- Modal Content -->
+   <form class="modal-content animate" action="/login" method="POST">
+     <div class="imgcontainer">
+        <img src="{{ url_for('static', filename='images/img_avatar2.png') }}">
+     </div>
+ 
+     <div class="container">
+        Username: <input name="username" type="text" placeholder="Enter Username" id="username" required />
+        Password: <input name="password" type="password" placeholder="Enter Password" id="password" required />
+       <input type="submit" value="Login" style="width:100px;height:auto;color:black" />
+     </div>
+   </form>
+ </div> 
+ <script>
+    // Get the modal
+    var modal = document.getElementById('id01');
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    </script>
+
+{% endblock body %}

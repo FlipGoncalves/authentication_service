@@ -1,0 +1,41 @@
+
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Home</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+
+{% block body %}
+{% if lista is defined and lista|length > 0 %}
+<table>
+<table class="styled-table" width="100%" style="width: 95%; margin-left: 2.5%" border="0">
+  <thead>
+      <tr>
+          <th>Name</th>
+          <th>Hours</th>
+          <th>Area</th>
+          <th>See Profile</th>
+      </tr>
+  </thead>
+  <tbody>
+    {% for u in lista %}
+      <tr>
+          <td>{{ u[0] }}</td>
+          <td>{{ u[1] }}</td>
+          <td>{{ u[2] }}</td>
+          <td><button class="editbtn" style="background-color: #c7c40f; color: black  ">edit</button></td>
+      </tr>
+      {% endfor %}
+</table>
+
+
+{% else %}
+
+    <p> Did not found {{ searchItem }}. </p>
+
+{% endif %}
+
+{% endblock %}
